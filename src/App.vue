@@ -20,20 +20,18 @@
   </v-app>
 </template>
 
-<script>
-import TodoForm from '@/components/todo-form'
-import TodoList from '@/components/todo-list'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import TodoForm from '@/components/todo-form.vue'
+import TodoList from '@/components/todo-list.vue'
 
-export default {
-  name: 'App',
+@Component({
   components: {
     TodoForm,
     TodoList,
   },
-  data () {
-    return {
-      title: 'Vue Todos'
-    }
-  }
+})
+export default class App extends Vue {
+  title: string = 'Vue Todos'
 }
 </script>

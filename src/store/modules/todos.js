@@ -12,12 +12,12 @@ const state = {
 
 const mutations = {
   [type.addTodo]: (state, payload) => {
-    const newTask = {
-      id: payload.newId,
+    const newTodo = {
+      id: payload.id,
       title: payload.title,
       completed: false
     };
-    state.todos = [newTask, ...state.todos]
+    state.todos = [newTodo, ...state.todos]
   },
   [type.toggleTodo]: (state, payload) => {
     state.todos = state.todos.map(todo => {

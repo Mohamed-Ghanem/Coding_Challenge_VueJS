@@ -20,26 +20,23 @@
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
 import store from "@/store/store";
 import * as type from "@/actions";
+import ITodo from '@/models/todo';
 
-export default {
-  props: {
-    todo: {
-      type: Object,
-      required: true
-    }
-  },
-  methods: {
-    toggleTodo() {
-      store.dispatch(type.toggleTodo, this.todo.id);
-    },
-    deleteTodo() {
-      store.dispatch(type.deleteTodo, this.todo.id);
-    }
+@Component
+export default class TodoItem extends Vue {
+  @Prop() private todo!: ITodo;
+
+  toggleTodo(): void {
+    store.dispatch(type.toggleTodo, this.todo.id);
   }
-};
+  deleteTodo(): void {
+    store.dispatch(type.deleteTodo, this.todo.id);
+  }
+}
 </script>
 
 <style lang="css">

@@ -8,18 +8,23 @@
   </div>
 </template>
 
-<script>
-import TodoItem from "@/components/todo-item";
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+import TodoItem from "@/components/todo-item.vue";
 import { mapState } from "vuex";
+import ITodo from '@/models/todo';
 
-export default {
+@Component({
   computed: mapState({
-    todos: state => state.todos.todos
+    todos: (state: any) => state.todos.todos
   }),
   components: {
     TodoItem
   }
-};
+})
+export default class TodoList extends Vue {
+  private todos!: ITodo[]; // is assigned via mapState
+}
 </script>
 
 <style lang="css">

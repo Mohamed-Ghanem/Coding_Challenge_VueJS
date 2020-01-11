@@ -9,25 +9,23 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
 import store from "@/store/store";
 import * as type from "@/actions";
 
-export default {
-  data() {
-    return {
-      title: "",
-      newId: 0
-    };
-  },
-  methods: {
-    addTodo() {
-      store.dispatch(type.addTodo, this);
-      this.newId++;
-      this.title = "";
-    }
+@Component
+export default class TodoForm extends Vue {
+  private id: number = 0;
+  private title: string = "";
+
+  addTodo(): void {
+    store.dispatch(type.addTodo, this);
+    this.id++;
+    this.title = "";
   }
-};
+}
 </script>
 
 <style lang="css">
